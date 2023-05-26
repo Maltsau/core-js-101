@@ -218,15 +218,13 @@ function getRectangleString(width, height) {
       else if (j === 0 && i === height - 1) result += '└';
       else if (j === width - 1 && i === height - 1) result += '┘';
       else if (
-        (j === 0 && i !== 0 && i !== height - 1) ||
-        (j === width - 1 && i !== 0 && i !== height - 1)
-      )
-        result += '│';
+        (j === 0 && i !== 0 && i !== height - 1)
+        || (j === width - 1 && i !== 0 && i !== height - 1)
+      ) result += '│';
       else if (
-        (i === 0 && j !== 0 && i !== width - 1) ||
-        (i === height - 1 && j !== 0 && j !== width - 1)
-      )
-        result += '─';
+        (i === 0 && j !== 0 && i !== width - 1)
+        || (i === height - 1 && j !== 0 && j !== width - 1)
+      ) result += '─';
       else result += ' ';
     }
     result += '\n';
@@ -254,7 +252,7 @@ function encodeToRot13(str) {
   const STR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   const KEY = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   let result = '';
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     if (STR.includes(str[i])) {
       result += KEY[STR.indexOf(str[i])];
     } else result += str[i];
@@ -278,7 +276,8 @@ function encodeToRot13(str) {
 function isString(value) {
   if (typeof value === 'string' || value instanceof String) {
     return true;
-  } else return false;
+  }
+  return false;
 }
 
 /**
